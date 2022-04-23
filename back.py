@@ -13,7 +13,7 @@ def hello_world():
 @app.route("/run", methods = ['POST'])
 def run():
     # load the model from disk 
-    filename = 'finalized_model.sav'
+    filename = 'finalized_model.sav' # Absolute path is needed for deployment at python anywhere    
     loaded_model = pickle.load(open(filename, 'rb'))
 
     # read the json from the request
@@ -31,7 +31,7 @@ def run():
     # send the result as json again
     result = loaded_model.score(X_test, y_test)        
 
-    dictionary = { "Score" : result}
+    dictionary = { "Model Score" : result}
     
     json_object = json.dumps(dictionary, indent = 4)
     
